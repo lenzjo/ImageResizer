@@ -21,14 +21,14 @@ const PATH = {
 //------------------ Replace this part with size-incs as needed ---------
 
 const newImages = [
-  { width: 250,       suffix: '-thumbnail-lg' },
-  { width: 250 * 2,   suffix: '-thumbnail-lg-hd' },
-  { width: 165,       suffix: '-thumbnail-md' },
-  { width: 165 * 2,   suffix: '-thumbnail-md-hd' },
-  { width: 474,       suffix: '-thumbnail-sm' },
-  { width: 474 * 2,   suffix: '-thumbnail-sm-hd' },
-  { width: 312,       suffix: '-thumbnail-bs' },
-  { width: 312 * 2,   suffix: '-thumbnail-bs-hd' }
+  { width: 1000,      suffix: '-lg' },
+  { width: 1000 * 2,  suffix: '-lg-hd' },
+  { width: 800,       suffix: '-md' },
+  { width: 800 * 2,   suffix: '-md-hd' },
+  { width: 530,       suffix: '-sm' },
+  { width: 530 * 2,   suffix: '-sm-hd' },
+  { width: 360,       suffix: '-bs' },
+  { width: 360 * 2,   suffix: '-bs-hd' }
 ];
 //-----------------------------------------------------------------------
 
@@ -41,7 +41,8 @@ gulp.task('default', function() {
   var streams = [];
 
   images.map(function(image) {
-    let origName = path.basename(image, '.jpg');
+    let fext = path.extname(image);
+    let origName = path.basename(image, fext);
     newImages.map(function(newImage) {
       streams.push(gulp.src(image)
         .pipe( $.rename(function (path) {
